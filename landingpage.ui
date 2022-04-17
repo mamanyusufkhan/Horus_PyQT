@@ -106,9 +106,9 @@ font: 30pt &quot;Haettenschweiler&quot;;</string>
   <widget class="QPushButton" name="diagbutton">
    <property name="geometry">
     <rect>
-     <x>180</x>
+     <x>60</x>
      <y>450</y>
-     <width>281</width>
+     <width>251</width>
      <height>61</height>
     </rect>
    </property>
@@ -120,6 +120,25 @@ font: 30pt &quot;Haettenschweiler&quot;;</string>
    </property>
    <property name="text">
     <string>Diagnose A Patient</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="showapp">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>450</y>
+     <width>261</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: black;
+color: white;
+font-size: 30pt;
+font: 30pt &quot;Haettenschweiler&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Show Appointments</string>
    </property>
   </widget>
  </widget>

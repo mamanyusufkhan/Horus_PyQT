@@ -11,6 +11,10 @@ class MainWindow(QDialog):
         self.doctorbutton.clicked.connect(self.gotodoctor)
         self.appointmentbutton.clicked.connect(self.gotoappointment)
         self.diagbutton.clicked.connect(self.gotodiag)
+        self.showapp.clicked.connect(self.gotoshowapp)
+
+    def gotoshowapp(self):
+        widget.setCurrentIndex(widget.currentIndex()+5)
 
     def gotodiag(self):
         widget.setCurrentIndex(widget.currentIndex()+4)
@@ -157,6 +161,29 @@ class DiagScreen(QDialog):
             'diag_date' : diag_date,
         }
 
+class AppointmentDisplay(QDialog):
+     def __init__(self):
+        super(AppointmentDisplay, self).__init__()
+        loadUi("appointdisplay.ui", self)
+        self.loaddata()
+        self.goback.clicked.connect(self.gobackfunction)
+        
+
+     def gobackfunction(self):
+        widget.setCurrentIndex(widget.currentIndex()-5)
+        widget.setFixedWidth(650) 
+    
+     def loaddata(self):
+        people=[]
+        row=0
+        self.tableWidget.setRowCount(len(people))
+        for person in people:
+            self.tableWidget.setItem(row, 0, QtWidgets.QTableWidgetItem(person["appointment_id"]))
+            self.tableWidget.setItem(row, 1, QtWidgets.QTableWidgetItem(str(person["patient_name"])))
+            self.tableWidget.setItem(row, 2, QtWidgets.QTableWidgetItem(person["doctor_name"]))
+            self.tableWidget.setItem(row, 3, QtWidgets.QTableWidgetItem(person["patient_number"]))
+            self.tableWidget.setItem(row, 4, QtWidgets.QTableWidgetItem(person["date"]))
+            row=row+1
 
 app = QApplication(sys.argv)
 widget = QtWidgets.QStackedWidget()
@@ -165,11 +192,13 @@ patientscreen = PatientScreen()
 doctorscreen = DoctorScreen()
 appointmentscreen = AppointmentScreen()
 diagscreen = DiagScreen()
+showappoint = AppointmentDisplay()
 widget.addWidget(mainwindow)
 widget.addWidget(patientscreen)
 widget.addWidget(doctorscreen)
 widget.addWidget(appointmentscreen)
 widget.addWidget(diagscreen)
+widget.addWidget(showappoint)
 widget.setFixedHeight(600)
 widget.setFixedWidth(650)
 widget.show()
