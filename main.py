@@ -10,6 +10,11 @@ class MainWindow(QDialog):
         self.patientbutton.clicked.connect(self.gotopatient)
         self.doctorbutton.clicked.connect(self.gotodoctor)
         self.appointmentbutton.clicked.connect(self.gotoappointment)
+        self.diagbutton.clicked.connect(self.gotodiag)
+
+    def gotodiag(self):
+        widget.setCurrentIndex(widget.currentIndex()+4)
+        widget.setFixedWidth(400)  
 
     def gotoappointment(self):
         widget.setCurrentIndex(widget.currentIndex()+3)
@@ -120,9 +125,38 @@ class AppointmentScreen(QDialog):
 
 
 
+class DiagScreen(QDialog):
+    def __init__(self):
+        super(DiagScreen, self).__init__()
+        loadUi("diagnostic.ui", self)
+        self.goback.clicked.connect(self.gobackfunction)
+        self.diagsubmitbutton.clicked.connect(self.diaginformation)
 
-
+    def gobackfunction(self):
+        widget.setCurrentIndex(widget.currentIndex()-4)
+        widget.setFixedWidth(650)   
+    
+    def diaginformation(self):
+        patient_name = self.patientname.text()
+        patient_phone_number = self.patientphonenumber.text()
+        doctor_name = self.doctorname.text()
+        doctor_phone_number = self.doctorphonenumber.text()
+        diag_details = self.diagdetails.toPlainText()
+        diag_remarks = self.diagremarks.toPlainText()
+        diag_date = self.diagdate.text()
         
+        print(diag_date)
+
+        return{
+            'patient_name' : patient_name,
+            'patient_phone_number' : patient_phone_number,
+            'doctor_name' : doctor_name,
+            'doctor_phone_number' : doctor_phone_number,
+            'diag_details' : diag_details,
+            'diag_remarks' : diag_remarks,
+            'diag_date' : diag_date,
+        }
+
 
 app = QApplication(sys.argv)
 widget = QtWidgets.QStackedWidget()
@@ -130,10 +164,12 @@ mainwindow = MainWindow()
 patientscreen = PatientScreen()
 doctorscreen = DoctorScreen()
 appointmentscreen = AppointmentScreen()
+diagscreen = DiagScreen()
 widget.addWidget(mainwindow)
 widget.addWidget(patientscreen)
 widget.addWidget(doctorscreen)
 widget.addWidget(appointmentscreen)
+widget.addWidget(diagscreen)
 widget.setFixedHeight(600)
 widget.setFixedWidth(650)
 widget.show()

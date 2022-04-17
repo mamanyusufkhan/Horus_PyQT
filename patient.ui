@@ -212,25 +212,6 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="patientsubmitbutton">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>390</y>
-     <width>121</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: black;
-color: white;
-font-size: 30pt;
-font: 20pt &quot;Haettenschweiler&quot;;</string>
-   </property>
-   <property name="text">
-    <string>Submit</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="goback">
    <property name="geometry">
     <rect>
@@ -264,6 +245,25 @@ font: 20pt &quot;Haettenschweiler&quot;;</string>
    </property>
    <property name="text">
     <string>Patient Name:</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="patientsubmitbutton">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>390</y>
+     <width>121</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: black;
+color: white;
+font-size: 30pt;
+font: 20pt &quot;Haettenschweiler&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Submit</string>
    </property>
   </widget>
  </widget>
