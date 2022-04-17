@@ -84,6 +84,25 @@ font: 30pt &quot;Haettenschweiler&quot;;</string>
     <string>Register A Doctor</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="appointmentbutton">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>200</y>
+     <width>281</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: black;
+color: white;
+font-size: 30pt;
+font: 30pt &quot;Haettenschweiler&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Make An Appointment</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

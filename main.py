@@ -9,6 +9,11 @@ class MainWindow(QDialog):
         loadUi("landingpage.ui", self)
         self.patientbutton.clicked.connect(self.gotopatient)
         self.doctorbutton.clicked.connect(self.gotodoctor)
+        self.appointmentbutton.clicked.connect(self.gotoappointment)
+
+    def gotoappointment(self):
+        widget.setCurrentIndex(widget.currentIndex()+3)
+        widget.setFixedWidth(400)  
 
     def gotodoctor(self):
         widget.setCurrentIndex(widget.currentIndex()+2)
@@ -86,14 +91,49 @@ class DoctorScreen(QDialog):
         
 
 
+class AppointmentScreen(QDialog):
+    def __init__(self):
+        super(AppointmentScreen, self).__init__()
+        loadUi("appointment.ui", self)
+        self.goback.clicked.connect(self.gobackfunction)
+        self.appointmentsubmitbutton.clicked.connect(self.appointmentinformation)
+
+    def gobackfunction(self):
+        widget.setCurrentIndex(widget.currentIndex()-3)
+        widget.setFixedWidth(650)
+
+    def appointmentinformation(self):
+        patient_name = self.patientname.text()
+        patient_phone_number = self.patientphonenumber.text()
+        doctor_name = self.doctorname.text()
+        doctor_phone_number = self.doctorphonenumber.text()
+        appointment_date = self.dateEdit.text()
+
+        return {
+            'doctor_name' : doctor_name,
+            'patient_name': patient_name,
+            'patient_phone_number': patient_phone_number,
+            'doctor_phone_number': doctor_phone_number,
+            'appointment_date': appointment_date,
+
+        }
+
+
+
+
+
+        
+
 app = QApplication(sys.argv)
 widget = QtWidgets.QStackedWidget()
 mainwindow = MainWindow()
 patientscreen = PatientScreen()
 doctorscreen = DoctorScreen()
+appointmentscreen = AppointmentScreen()
 widget.addWidget(mainwindow)
 widget.addWidget(patientscreen)
 widget.addWidget(doctorscreen)
+widget.addWidget(appointmentscreen)
 widget.setFixedHeight(600)
 widget.setFixedWidth(650)
 widget.show()
